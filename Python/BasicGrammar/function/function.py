@@ -36,6 +36,12 @@ def func(*args,**kwargs):
     print("kwargs:",kwargs)
 func(1,2,3,a = 4,b = 5)
 
+#接收可变数量参数
+def print_kwargs(*args, **kwargs):
+    for key,value in kwargs.items():
+        print(f"{key}:{value}")
+print_kwargs(a=1,b=2,c=2)
+
 #返回值
 def add_substract(a,b):
     return a+b,a-b
@@ -54,7 +60,42 @@ def factorial(n):
         return n*factorial(n-1)
 print(factorial(5))
 
-#函数注释
-def add(a:int,b:int):
+#参数类型注释
+def add(a:int,b:int)->int:
     return a+b
 print(add(3,5))
+
+#函数的嵌套和闭包
+#闭包
+def outer_function(msg):
+    def inner_function():
+        print(msg)
+    return inner_function
+
+closure = outer_function("Hello world")
+closure()
+
+#函数嵌套
+def outer_function(msg):
+    def inner_function(msg):
+        print(msg)
+    inner_function(msg)
+
+outer_function("Hello")
+
+#高阶函数
+def apply_function(func, value):
+    return func(value)
+
+print(apply_function(lambda x:x*x,5))
+
+#函数文档字符串
+def greet(name):
+    #你好
+    """_summary_
+
+    Args:
+        name (_type_): _description_
+    """
+    return name
+print(greet.__doc__)

@@ -63,3 +63,9 @@ print(squares)
 x = 10
 result = "greater than 5"if x > 5 else "less or equal to 5"
 print(result)
+
+#for搭配else进行使用
+for i in range(10):
+    print(i)
+else:
+    print("hello world")
