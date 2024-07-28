@@ -48,7 +48,104 @@ class Animal:
 
 print(Animal.get_species())
 
-#类属性和类方法*****
+#类属性和类方法
+#类属性
+class MyClass:
+    class_attribute = "I am a class attribute"
+#访问类属性
+print(MyClass.class_attribute)
+#创建实例
+instance1 = MyClass()
+print(instance1.class_attribute)
+
+#修改类属性
+MyClass.class_attribute = "Hello world"
+print(instance1.class_attribute)
+
+#实例属性
+class MyClass:
+    def __init__(self,value) -> None:
+        self.instance_attribute = value
+#创建实例并初始化实例属性
+instance1 = MyClass("Instance1 attribute")
+print(instance1.instance_attribute)
+#修改实例属性
+instance1.instance_attribute = "Change Instance1 attribute"
+print(instance1.instance_attribute)
+
+#类方法
+class MyClass:
+    class_attribute = "I am a class attribute"
+    #创建类方法，接收cls作为第一个参数，表示类本身
+    @classmethod
+    def class_method(cls):
+        return f"Class method called. Class attribute:{cls.class_attribute}"
+print(MyClass.class_method())
+
+instance2 = MyClass()
+print(instance2.class_method())
+
+#实例方法
+class MyClass:
+    def __init__(self,value="Instance attribute") -> None:
+        self.instance_attribute = value
+    #创建实例方法，接收self作为第一个参数
+    def instance_method(self):
+        return f"Instance method called. Instance attribute:{self.instance_attribute}"
+instance3 = MyClass("Instance attribute")
+print(instance3.instance_method())
+
+#静态方法&静态属性
+#静态方法
+class MyClass:
+    #创建静态方法，不接受cls或者self的参数，不能方位类属性和实例属性
+    @staticmethod
+    def static_method():
+        return "Static method called"
+#调用静态方法
+print(MyClass.static_method())
+instance4 = MyClass()
+print(instance4.static_method())
+
+#静态属性
+class MyClass:
+    _static_attribute = "I am a static attribute"
+    @staticmethod
+    def _get_static_attribute():
+        return MyClass._static_attribute
+    def _set_static_attribute(value):
+        MyClass._static_attribute = value
+        
+    static_attribute = property(_get_static_attribute,_set_static_attribute)
+#访问静态属性
+print(MyClass.static_attribute)
+#修改静态属性
+MyClass.static_attribute = "Hello world"
+print(MyClass.static_attribute)
+#创建实例
+instance5 = MyClass()
+print(instance5.static_attribute)
+
+#property调用静态方法时候会被仿作实例方法调用，导致接受额外参数
+class MyClass:
+    _static_attribute = "I am a static attribute"
+    @classmethod
+    def _get_static_attribute(cls):
+        return cls._static_attribute
+    @classmethod
+    def _set_static_attribute(cls, value):
+        cls._static_attribute = value
+        
+    static_attribute = property(_get_static_attribute,_set_static_attribute)
+    
+print(MyClass.static_attribute)
+
+#创建实例
+instance1 = MyClass()
+MyClass.static_attribute = "New value"
+print(MyClass.static_attribute)
+print(instance1.static_attribute)
+    
 
 #静态方法
 class Math:
@@ -82,8 +179,6 @@ print(cat1.name)
 print(dog1.speak())
 print(cat1.speak())
     
-
-
 #super()函数
 class Animals:
     def __init__(self,name) -> None:
@@ -196,3 +291,78 @@ print(print_area(circle))
 print(print_area(rectangle))
 print(circle.description())
 print(rectangle.description())
+
+#封装
+class Dog:
+    def __init__(self,name,age) -> None:
+        self.__name = name
+        self.age = age
+    def get_name(self):
+        return self.__name
+
+dog1 = Dog("Buddy",4)
+print(dog1.get_name())
+#通过名称改写实现访问
+class MyClass:
+    def __init__(self) -> None:
+        self.__private_attr = "This is a private attribute"
+obj = MyClass()
+#__双下划线前缀将原属性改写名称为_ClassName__attributeName，可通过改写名称直接访问
+print(obj._MyClass__private_attr)
+
+
+#构造函数
+#创建对象时自动调用构造函数
+class MyClass:
+    def __init__(self) -> None:
+        print("This is the constructor.")
+
+obj = MyClass()
+
+class Person:
+    def __init__(self, name:str, age:int) -> None:
+        self.name = name
+        self.age = age
+        
+person1 = Person("Alice",23)
+person2 = Person("Bob",55)
+print(person1.age)
+print(person2.name)
+
+#默认参数
+class Worker(Person):
+    def __init__(self, name: str, age: int, job="Teacher") -> None:
+        super().__init__(name, age)
+        self.job = job
+
+work1 = Worker("Carry",9,"programer")
+work2 = Worker("David",9)
+print(work1.job)
+print(work2.job)
+
+#构造函数中的逻辑
+class Rectangle:
+    def __init__(self,width, height) -> None:
+        if width <= 0 or height <= 0:
+            raise ValueError("Width and height must be postive.")
+        self.width = width
+        self.height = height
+        
+    def area(self):
+        return self.width * self.height
+    
+rect1 = Rectangle(4,5)
+print(rect1.area())
+# rect2 = Rectangle(0,0)
+
+#多个构造函数(重载)
+#Python不原生支持重载
+class Book:
+    def __init__(self,title,author,pages = None) -> None:
+        self.title = title
+        self.author = author
+        self.pages = pages if pages is not None else "Unkown"
+book1 = Book("Hello world","David",93)
+book2 = Book("White house","Steven")
+print(book1.pages)
+print(book2.pages)
