@@ -99,3 +99,11 @@ def greet(name):
     """
     return name
 print(greet.__doc__)
+
+#函数的赋值
+def Hello():
+    print("nihao")
+    
+Hello2 = Hello
+
+Hello2()
