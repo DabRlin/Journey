@@ -69,3 +69,7 @@ for i in range(10):
     print(i)
 else:
     print("hello world")
+    
+#列表生成式
+squares = [x**2 for x in range(10)]
+print(squares)

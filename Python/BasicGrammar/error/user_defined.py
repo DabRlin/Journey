@@ -124,3 +124,7 @@ try:
     Login(12345)
 except LoginError as e:
     print(e)
+    
+class MyError(Exception):
+    def __init__(self, *args: object) -> None:
+        super().__init__(*args)

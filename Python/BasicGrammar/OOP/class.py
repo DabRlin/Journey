@@ -186,6 +186,7 @@ class Animals:
 
 class Dog(Animal):
     def __init__(self, name,breed) -> None:
+        #super() 返回对父类的引用，从而允许你调用父类的方法。
         super().__init__(name)
         self.breed = breed
         
@@ -254,6 +255,7 @@ let_it_fly(airplane)
 
 #使用抽象基类来实现接口多态实现抽象基类
 # 子类必须实现所有的抽象方法，否则子类也将被视为抽象类，无法实例化。
+#Python没有专门的接口关键字，但可以通过抽象基类来模拟接口的行为
 from abc import ABC,abstractmethod
 
 class Shape:
