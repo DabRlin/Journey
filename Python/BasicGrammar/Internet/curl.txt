@@ -1,0 +1,31 @@
+基本用法
+
+获取网页内容:
+curl http://example.com
+
+保存下载的内容到文件:
+curl -o filename.html http://example.com
+
+下载多个文件:
+curl -O http://example.com/file1.txt -O http://example.com/file2.txt
+
+上传文件:
+curl -T localfile.txt ftp://example.com/remote/path/
+
+使用 POST 方法提交数据:
+curl -d "param1=value1&param2=value2" http://example.com/post
+
+提交 JSON 数据:
+curl -H "Content-Type: application/json" -d '{"key":"value"}' http://example.com/api
+
+添加请求头:
+curl -H "Authorization: Bearer token" http://example.com
+
+查看详细的请求和响应信息:
+curl -v http://example.com
+
+跟踪重定向:
+curl -L http://example.com
+
+使用代理:
+curl -x http://proxyserver:port http://example.com
