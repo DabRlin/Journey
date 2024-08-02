@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Management</title>
+</head>
+<body>
+    <h1>User Management System</h1>
+
+    <h2>Create User</h2>
+    <form id="create-user-form">
+        <input type="text" id="user-name" placeholder="Name" required>
+        <input type="email" id="user-email" placeholder="Email" required>
+        <button type="submit">Create User</button>
+    </form>
+
+    <h2>User List</h2>
+    <ul id="user-list"></ul>
+
+    <script>
+        const apiUrl = 'http://127.0.0.1:8000/users';
+
+        // Fetch user list
+        function fetchUsers() {
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    const userList = document.getElementById('user-list');
+                    userList.innerHTML = '';
+                    data.forEach(user => {
+                        const li = document.createElement('li');
+                        li.textContent = `${user.name} (${user.email})`;
+                        userList.appendChild(li);
+                    });
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        // Create user
+        document.getElementById('create-user-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const name = document.getElementById('user-name').value;
+            const email = document.getElementById('user-email').value;
+            fetch(apiUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ id: Date.now(), name, email })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Created User:', data);
+                fetchUsers();
+            })
+            .catch(error => console.error('Error:', error));
+        });
+
+        // Initial fetch of user list
+        fetchUsers();
+    </script>
+</body>
+</html>
