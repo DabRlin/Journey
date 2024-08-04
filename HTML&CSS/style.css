@@ -1,0 +1,39 @@
+/* 层叠样式表 */
+
+/* 类选择器 */
+.class-name{
+    font-size: large;
+}
+/* 元素选择器 */
+p{
+    color: chocolate;
+}
+
+/* id选择器 */
+#unique-id{
+    font-size: large;
+}
+
+/* 属性选择器 */
+[type = "text"]{
+    border: 1px solid blanchedalmond;
+}
+
+/* 伪类选择器 */
+a:hover{
+    color: beige;
+}
+
+/* 伪元素选择器 */
+p::first-line{
+    font-weight: bold;
+}
+
+.element{
+    border: 1px saddlebrown;
+}
+
+.block-element {
+    width: auto;
+    margin: auto;
+}
