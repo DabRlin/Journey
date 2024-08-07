@@ -81,6 +81,7 @@
       function startTimer() {
         if (!running) {
           running = true;
+          //创建计时器
           timer = setInterval(() => {
             seconds++;
             updateTimer();
@@ -91,6 +92,7 @@
       function stopTimer() {
         if (running) {
           running = false;
+          //用来停止计时器
           clearInterval(timer);
         }
       }
