@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul id = "myList">
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+    </ul>
+    <button id = "addItem">add Item</button>
+    <script>
+        document.getElementById("myList").addEventListener("click",function(event){
+            if (event.target&&event.target.nodeName === "LI"){
+                console.log("LIst item clicked:",event.target.textConcent);
+            }
+        });
+        document.getElementById("addItem").addEventListener("click",function(event){
+            let newItem = document.createElement("li");
+            newItem.textContent = "New Item";
+            document.getElementById("myList").appendChild(newItem);
+        });
+    </script>
+</body>
+</html>\
+<!-- 
+事件委托
+事件委托是一种将事件处理程序添加到父元素上，而不是单独添加到每个子元素上的技术。
+它利用了事件冒泡机制，使得可以在父元素上统一管理多个子元素的事件处理。
+
+事件冒泡和事件捕获
+事件冒泡和事件捕获是指事件在DOM树中传播的两种方式。
+
+事件冒泡（Event Bubbling）：事件从目标元素开始，逐级向上传播到文档的根元素。
+默认情况下，大多数事件都是以这种方式传播的。
+
+事件捕获（Event Capturing）：事件从文档的根元素开始，逐级向下传播到目标元素。
+在事件捕获阶段，事件处理程序有机会在事件到达目标元素之前处理事件。 -->

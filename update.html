@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>测试 innerHTML</title>
+</head>
+<body>
+    <div id="container">这是原始内容</div>
+
+    <script>
+        // JavaScript代码
+        let element = document.getElementById('container');
+        let html1 = element.innerHTML;
+        console.log(html1);
+        element.innerHTML = '<p>New HTML content</p>'; // 设置 HTML 内容
+        let html = element.innerHTML; // 获取 HTML 内容
+
+        // 输出到控制台以便测试
+        console.log(html); // 应该输出: <p>New HTML content</p>
+    </script>
+</body>
+</html>

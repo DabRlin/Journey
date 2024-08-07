@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>事件捕获阶段的事件委托示例</title>
+</head>
+<body>
+  <div id="parentDiv">
+    <button class="childBtn">Button 1</button>
+    <button class="childBtn">Button 2</button>
+    <button class="childBtn">Button 3</button>
+  </div>
+  <button id="addButton">添加按钮</button>
+  <script>
+    // 在父元素上绑定事件处理程序，启用事件捕获阶段
+document.getElementById('parentDiv').addEventListener('click', function(event) {
+    // 确保事件目标是目标子元素
+    if (event.target && event.target.classList.contains('childBtn')) {
+      console.log('Button clicked:', event.target.textContent);
+    }
+  }, true); // 第三个参数设置为 true，启用捕获阶段
+  
+  // 动态添加新按钮
+  document.getElementById('addButton').addEventListener('click', function() {
+    let newButton = document.createElement('button');
+    newButton.textContent = 'New Button';
+    newButton.classList.add('childBtn');
+    document.getElementById('parentDiv').appendChild(newButton);
+  });
+  
+  </script>
+</body>
+</html>
