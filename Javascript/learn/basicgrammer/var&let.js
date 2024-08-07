@@ -11,22 +11,21 @@
 //     console.log("你好");
 // }
 
-let i =10
+let i = 10;
 
-for ( let i = 1;i<=5;i++){
-    console.log("Hello world");
-    console.log(i)
+for (let i = 1; i <= 5; i++) {
+  console.log("Hello world");
+  console.log(i);
 }
 
-console.log(i)
+console.log(i);
 
-
-for (  i = 1;i<=5;i++){
-    console.log("Hello world");
-    console.log(i)
+for (i = 1; i <= 5; i++) {
+  console.log("Hello world");
+  console.log(i);
 }
 
-console.log(i)
+console.log(i);
 //依旧不被允许
 // let i = 10
 

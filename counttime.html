@@ -1,110 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Simple Timer</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f0f0f0;
-        }
-        
-        .container {
-            text-align: center;
-            background: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        
-        #timer {
-            font-size: 2em;
-            margin: 20px 0;
-        }
-        
-        button {
-            font-size: 1em;
-            padding: 10px 20px;
-            margin: 5px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        
-        #startButton {
-            background-color: #28a745;
-            color: white;
-        }
-        
-        #stopButton {
-            background-color: #dc3545;
-            color: white;
-        }
-        
-        #resetButton {
-            background-color: #ffc107;
-            color: white;
-        }
-        
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f0f0f0;
+      }
+
+      .container {
+        text-align: center;
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      #timer {
+        font-size: 2em;
+        margin: 20px 0;
+      }
+
+      button {
+        font-size: 1em;
+        padding: 10px 20px;
+        margin: 5px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      #startButton {
+        background-color: #28a745;
+        color: white;
+      }
+
+      #stopButton {
+        background-color: #dc3545;
+        color: white;
+      }
+
+      #resetButton {
+        background-color: #ffc107;
+        color: white;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <h1>Simple Timer</h1>
-        <div id="timer">00:00:00</div>
-        <button id="startButton">Start</button>
-        <button id="stopButton">Stop</button>
-        <button id="resetButton">Reset</button>
+      <h1>Simple Timer</h1>
+      <div id="timer">00:00:00</div>
+      <button id="startButton">Start</button>
+      <button id="stopButton">Stop</button>
+      <button id="resetButton">Reset</button>
     </div>
     <script>
-        let timer;
-let seconds = 0;
-let running = false;
+      let timer;
+      let seconds = 0;
+      let running = false;
 
-function updateTimer() {
-    const hrs = Math.floor(seconds / 3600);
-    const mins = Math.floor((seconds % 3600) / 60);
-    const secs = seconds % 60;
+      function updateTimer() {
+        const hrs = Math.floor(seconds / 3600);
+        const mins = Math.floor((seconds % 3600) / 60);
+        const secs = seconds % 60;
 
-    document.getElementById('timer').textContent = 
-        `${hrs.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-}
+        document.getElementById("timer").textContent = `${hrs
+          .toString()
+          .padStart(2, "0")}:${mins.toString().padStart(2, "0")}:${secs
+          .toString()
+          .padStart(2, "0")}`;
+      }
 
-function startTimer() {
-    if (!running) {
-        running = true;
-        timer = setInterval(() => {
+      function startTimer() {
+        if (!running) {
+          running = true;
+          timer = setInterval(() => {
             seconds++;
             updateTimer();
-        }, 1000);
-    }
-}
+          }, 1000);
+        }
+      }
 
-function stopTimer() {
-    if (running) {
-        running = false;
-        clearInterval(timer);
-    }
-}
+      function stopTimer() {
+        if (running) {
+          running = false;
+          clearInterval(timer);
+        }
+      }
 
-function resetTimer() {
-    stopTimer();
-    seconds = 0;
-    updateTimer();
-}
+      function resetTimer() {
+        stopTimer();
+        seconds = 0;
+        updateTimer();
+      }
 
-document.getElementById('startButton').addEventListener('click', startTimer);
-document.getElementById('stopButton').addEventListener('click', stopTimer);
-document.getElementById('resetButton').addEventListener('click', resetTimer);
+      document
+        .getElementById("startButton")
+        .addEventListener("click", startTimer);
+      document
+        .getElementById("stopButton")
+        .addEventListener("click", stopTimer);
+      document
+        .getElementById("resetButton")
+        .addEventListener("click", resetTimer);
 
-updateTimer(); // Initialize timer display
-
+      updateTimer(); // Initialize timer display
     </script>
-</body>
+  </body>
 </html>

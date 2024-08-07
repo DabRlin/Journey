@@ -1,31 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
-    <ul id = "myList">
-        <li>Item 1</li>
-        <li>Item 2</li>
-        <li>Item 3</li>
+  </head>
+  <body>
+    <ul id="myList">
+      <li>Item 1</li>
+      <li>Item 2</li>
+      <li>Item 3</li>
     </ul>
-    <button id = "addItem">add Item</button>
+    <button id="addItem">add Item</button>
     <script>
-        document.getElementById("myList").addEventListener("click",function(event){
-            if (event.target&&event.target.nodeName === "LI"){
-                console.log("LIst item clicked:",event.target.textConcent);
-            }
+      document
+        .getElementById("myList")
+        .addEventListener("click", function (event) {
+          if (event.target && event.target.nodeName === "LI") {
+            console.log("LIst item clicked:", event.target.textConcent);
+          }
         });
-        document.getElementById("addItem").addEventListener("click",function(event){
-            let newItem = document.createElement("li");
-            newItem.textContent = "New Item";
-            document.getElementById("myList").appendChild(newItem);
+      document
+        .getElementById("addItem")
+        .addEventListener("click", function (event) {
+          let newItem = document.createElement("li");
+          newItem.textContent = "New Item";
+          document.getElementById("myList").appendChild(newItem);
         });
     </script>
-</body>
-</html>\
+  </body>
+</html>
+\
 <!-- 
 事件委托
 事件委托是一种将事件处理程序添加到父元素上，而不是单独添加到每个子元素上的技术。
