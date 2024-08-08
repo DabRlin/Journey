@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Query</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #333;
+        }
+        #studentId {
+            width: 300px;
+            padding: 10px;
+            margin: 10px;
+            font-size: 16px;
+        }
+        #queryButton {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color:bisque;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        #queryButton:hover {
+            background-color:bisque;
+        }
+        #resultTable {
+            margin-top: 20px;
+            border-collapse: collapse;
+            width: 60%;
+        }
+        #resultTable td, #resultTable th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        #resultTable th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color:bisque;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Student Query</h1>
+    <input type="text" id="studentId" placeholder="Enter Student ID">
+    <button id="queryButton" onclick="queryStudent()">Query</button>
+    <table id="resultTable" style="display:none;">
+        <tr><th>ID</th><td id="studentIdTd"></td></tr>
+        <tr><th>Name</th><td id="studentNameTd"></td></tr>
+        <tr><th>Gender</th><td id="studentGenderTd"></td></tr>
+        <tr><th>Major</th><td id="studentMajorTd"></td></tr>
+    </table>
+
+    <script>
+        function queryStudent() {
+            const studentId = document.getElementById('studentId').value;
+            fetch(`http://127.0.0.1:5000/get_student?id=${studentId}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        alert(data.error);
+                        document.getElementById('resultTable').style.display = 'none';
+                    } else {
+                        document.getElementById('studentIdTd').innerText = data.id;
+                        document.getElementById('studentNameTd').innerText = data.name;
+                        document.getElementById('studentGenderTd').innerText = data.gender;
+                        document.getElementById('studentMajorTd').innerText = data.major;
+                        document.getElementById('resultTable').style.display = 'table';
+                    }
+                });
+        }
+    </script>
+</body>
+</html>

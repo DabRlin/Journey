@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Query</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #007bff;
+            border-radius: 4px;
+            width: 300px;
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        table {
+            width: 100%;
+            max-width: 600px;
+            margin-top: 20px;
+            border-collapse: collapse;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #007bff;
+            color: #fff;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <h1>Student Query</h1>
+    <div>
+        <input type="text" id="studentId" placeholder="Enter student ID">
+        <button onclick="queryStudent()">Query</button>
+    </div>
+
+    <table id="resultTable" style="display:none;">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Gender</th>
+                <th>Major</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td id="studentIdTd"></td>
+                <td id="studentNameTd"></td>
+                <td id="studentGenderTd"></td>
+                <td id="studentMajorTd"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        function queryStudent() {
+            const studentId = document.getElementById('studentId').value;
+            fetch(`/get_student?id=${studentId}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        alert(data.error);
+                        document.getElementById('resultTable').style.display = 'none';
+                    } else {
+                        document.getElementById('studentIdTd').innerText = data.id;
+                        document.getElementById('studentNameTd').innerText = data.name;
+                        document.getElementById('studentGenderTd').innerText = data.gender;
+                        document.getElementById('studentMajorTd').innerText = data.major;
+                        document.getElementById('resultTable').style.display = 'table';
+                    }
+                });
+        }
+    </script>
+</body>
+</html>
