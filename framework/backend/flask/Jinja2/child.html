@@ -1,0 +1,16 @@
+{% extend "test.html" %}
+
+{%block title%}Home Page{% endblock%}
+
+{%block content%}
+    <h2>Welcome to the Home Page</h2>
+    <p> This is the content of the home page.</p>
+{%endblock%}
+
+{%block bode%}
+<!-- 保留test.html中body块的内容，在结尾添加页脚 -->
+    {{super()}}
+    <footer>
+        <p>This is an additional footer</p>
+    </footer>
+{%endblock%}

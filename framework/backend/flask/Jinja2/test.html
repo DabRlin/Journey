@@ -1,0 +1,77 @@
+<!-- Jinja2生成HTML界面 -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 基本使用 -->
+    <p>Hello,{{name}}</p>
+    <!-- 对象访问 -->
+    <p>Username:{{user.username}}</p>
+    <!-- 使用Python内置方法 strftime(""%Y-%m-%d) 将日期格式化为指定格式 -->
+    <p>Joined:{{user.join_data.strftime("%Y-%m-%d")}}</p>
+    <!-- 字典访问 -->
+    <p>City:{{user["city"]}}</p>
+
+    <!-- 过滤器 -->
+    <!-- Jinja2内置过滤器upper将文本转化为大写 -->
+    <p>{{name|upper}}</p>
+    <p>List length:{{ my_list | length}}</p>
+    <p>Username:{{username|default("Guest")}}</p>
+    <!-- 也可以自定义过滤器在Python代码中, 此处在filter.py中自定义了一个过滤器-->
+    <p>Reversed Text:{{text|reverse}}</p>
+    <!-- Jinja2创建变量 -->
+    {% set greeting = "Hello world"%} {% set fruits =
+    ["apple","banana","cherry"]%}
+    <p>{{greeting}}</p>
+    <!-- 变量的作用域:类似Python -->
+    {% set full_name = user.first_name + " " + user.last_name %}
+    <p>{{full_name}}</p>
+
+    <!-- Jinja2控制流 -->
+    <!-- Jinja2判断 -->
+    {% if user.is_authenticated %}
+    <p>Welcome!{{user.username}}</p>
+    {% elif user.is_guest %}
+    <p>Welcome!Guest</p>
+    {% else %}
+    <p>Please log in</p>
+    {% endif %}
+    <ul>
+      <!-- Jinja2循环 -->
+      {% for item in items %}
+      <li>{{item}}</li>
+      {% endfor %}
+    </ul>
+    <!-- Jinja2循环控制变量 -->
+    <ul>
+      {% for item in items%}
+      <li>{{ loop.index}}:{{item}}</li>
+      {% endfor %}
+    </ul>
+    <!-- 宏macro -->
+    {% macro render_item(item)%}
+    <li>{{item}}</li>
+    {% endmacro %}
+    <!-- 调用宏 -->
+    <ul>
+      {% for item in items%} {{render_item(item)}} {% endfor %}
+      <!-- 默认参数 -->
+      {% macro render_item(item,css_class = "default-class")%}
+      <li class="{{ css_class }}">{{item}}</li>
+      {% endmacro %}
+    </ul>
+
+    <!-- 模板与继承:预留占位符块 -->
+    <div class="content">
+      {%block title}Default title{%endblock%} {%block content%}Default
+      content{%endblock%}
+    </div>
+    <!-- 导入代码片段 -->
+    {% include "navigation.html"%}
+  </body>
+</html>
