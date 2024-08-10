@@ -1,0 +1,32 @@
+<!-- 在模板中显示错误信息，帮助用户修正错误 -->
+
+<form method="POST" action="register">
+  <!-- 插入隐藏字段，CSRF令牌 -->
+  <!-- 用户名输入框 -->
+  {{form.hidden_tag}}
+  <p>
+    {{form.username.label}}<br />
+    {{form.username(size=32)}}<br />
+    {% for error in form.username.errors%}
+    <span style="color: aquamarine">[{{ error}}]</span>
+    {{% endfor %}}
+  </p>
+  <!-- 邮件输入框 -->
+  <p>
+    {{form.email.label}}<br />
+    {{form.email(size=32)}}<br />
+    {% for error in form.email.errors%}
+    <span style="color: aquamarine">[{{error}}]</span>
+    {% endfor %}
+  </p>
+  <!-- 密码输入框 -->
+  <p>
+    {{form.password.label}}<br />
+    {{form.password(size=32)}}<br />
+    {% for error in form.password.errors%}
+    <span style="color: aquamarine">[{{error}}]</span>
+    {% endfor %}
+  </p>
+  <!-- 提交按钮 -->
+  <p>{{form.sumbit}}</p>
+</form>

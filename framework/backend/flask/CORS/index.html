@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0" />
+    <title>Form</title>
+  </head>
+  <body>
+    <!-- 发送跨域表单 -->
+    <form method="POST" action="https:127.0.0.1:8000/submit">
+      <!-- for指定与只管来奶的表单控件的id -->
+      <label for="username">Username:</label>
+      <!-- name指定输入框的名称，提交表单时作为键值对的键 -->
+      <input type="text" id="username" name="username" />
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" />
+      <!-- 提交按钮发送表单，点击按钮将表单提交到action指定的url处 -->
+      <!-- 如果未进行指定，则提交到当前页面 -->
+      <input type="submit" value="Submit" />
+    </form>
+  </body>
+</html>
