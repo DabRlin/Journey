@@ -204,7 +204,10 @@ class Flyable:
 class Swimmable:
     def swim(self):
         return "Swimming"
-    
+
+#继承Flyable和Swimmable
+#继承时如果出现多个父类之间有相同的祖先类，或者有相同的属性/方法
+# 按顺序进行继承
 class Duck(Flyable,Swimmable):
     def quack(self):
         return "Quack!"

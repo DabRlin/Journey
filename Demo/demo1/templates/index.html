@@ -92,6 +92,7 @@
     <script>
         function queryStudent() {
             const studentId = document.getElementById('studentId').value;
+            {% comment %} 通过url传递参数 {% endcomment %}
             fetch(`/get_student?id=${studentId}`)
                 .then(response => response.json())
                 .then(data => {

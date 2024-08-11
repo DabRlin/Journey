@@ -1,4 +1,5 @@
-from flask import Flask,render_template,flash,redirect,url_for,jsonify
+import requests
+from flask import Flask,render_template,flash,redirect,url_for,jsonify,render_template_string
 from forms import RegistrationForm,LoginForm
 from flask_wtf import CSRFProtect,csrf_exempt
 
@@ -29,6 +30,18 @@ def login():
         flash(f"Login successful","success")
         return redirect(url_for("home"))
     return render_template("login.html",form = form)
+
+@app.route("/remoute_register")
+def remoute_register():
+    form = RegistrationForm()
+    if form.validate_on_submit():
+        flash(f"Account created for {form.username.data}!","success")
+        return redirect(url_for("home"))
+    #从远程服务器获取模板文件内容
+    response = requests.get("https://example.com/templates.register.html")
+    template_content = response.text
+    
+    return render_template_string(template_content,form = form)
 
 #启用保护就要注意发送请求时要包含CSRF令牌
 @app.route("/api/data")
