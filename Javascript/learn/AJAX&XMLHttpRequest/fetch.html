@@ -1,0 +1,26 @@
+#通过fetch api加载html内容
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fetch Example</title>
+  </head>
+  <body>
+    <div id="content"></div>
+    <button id="loadContent" Load Content></button>
+    <script>
+      document
+        .getElementById("loadContent")
+        <!-- 进行html文件切换 如果是单页面应用 则是进行内容切换 -->
+        .addEventListener("click", function () {
+          fetch("page.html")
+            .then((response) => response.text())
+            .then((data) => {
+              document.getElementById("content").innerHTML = data;
+            });
+        });
+    </script>
+  </body>
+</html>

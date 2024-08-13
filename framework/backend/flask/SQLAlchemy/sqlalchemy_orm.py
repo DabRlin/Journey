@@ -17,7 +17,9 @@ class User(Base):
     email = Column(String,unique= True,nullable= False)
     
 #创建表
-Base.metadata.create_all(engine)
+Base.metadata.create_all(engine)#这里将metadata封装在基类内
+# 创建的Base类会自动生成一个 MetaData 对象，并将其绑定到 Base.metadata。
+# SQLAlchemy ORM会通过Base自动处理所有继承自Base的ORM模型类的元数据，并在数据库中创建相应的表。
 
 #创建会话类
 Session = sessionmaker(bind=engine)#绑定数据库连接

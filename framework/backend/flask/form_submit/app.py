@@ -19,7 +19,7 @@ def sumbit():
 @app.route("register",method=["GET","POST"])
 def register():
     #实例化自定义表单对象
-    #Flask-WTF会自动将数据填充到form对象中
+    #Flask-WTF会自动将数据填充到form对象中 也会自动生成一个CSRF令牌
     form = RegistrationForm()
     #验证表单数据是否符合验证
     if form.validate_on_submit():

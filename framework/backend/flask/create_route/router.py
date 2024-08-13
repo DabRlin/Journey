@@ -10,12 +10,12 @@ def some_function():
     return "response"        
 
 #url路径中的变量
-@app.route("/user/<username")
+@app.route("/user/<username>")
 def show_user_profile(username):
     return f"user:{username}"
 
 #url变量指定类型
-@app.route("/post/<int:post_id")
+@app.route("/post/<int:post_id>")
 def show_post(post_id):
     return f"Post ID:{post_id}"
 
