@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,
+    <!-- 引入vue.js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+  </head>
+  <body>
+    <div id="app">
+      <!-- 显示计时器的值 -->
+       <!-- {{}}是vue插值语法 将data对象中的count属性插入到HTML中 -->
+      <p>当前计数：{{ count }}</p>
+      <!-- 增加和减少计数的按钮 -->
+       <!-- @click="" Vue的时间监听指令 将click绑定到对应方法 -->
+        <!-- 使用@语法糖的v-on缩写@click是v-on:click的简写形式 -->
+      <button @click="increment">增加</button>
+      <button @click="decrement">减少</button>
+    </div>
+    <script>
+        //创建一个新的vue实例
+      var app = new Vue({
+        //绑定DOM元素 成为Vue实例管理的区域 作用与此元素与子元素
+        el: "#app",//绑定到界面上的#app元素
+        //定义属性
+        data: {
+          count: 0,//定义一个数据属性count 初始值为0
+        },
+        //定义方法
+        methods: {
+          increment: function () {
+            this.count += 1;//增加计数器的值
+          },
+          decrement: function () {
+            this.count -= 1;//减少计数器的值
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

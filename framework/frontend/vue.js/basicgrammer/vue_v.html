@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+  </head>
+  <body>
+    <!-- {{}}插值进行数据绑定 -->
+    <p id="p">你好，{{ name }}!</p>
+    <div id="div">
+      <!-- 将html属性绑定到Vue实例的数据上 -->
+      <img v-bind:src="imageSrc" alt="示例图片" />
+      <!-- v-model 双向数据绑定 -->
+      <input v-model="message1" placeholder="输入消息" />
+      <p>{{message1}}</p>
+      <input v-bind:value="message2" placeholder="输入消息" />
+      <!-- 使用v-bind语法糖 -->
+      <input :value="message2" placeholder="输入消息" />
+      <p>{{message2}}</p>
+      <!-- v-for用来渲染列表生成一组DOM -->
+      <ul>
+        <li v-for="item in items" :key="item.id">{{item.text}}</li>
+      </ul>
+      <!-- v-if和v-else v-else-if实现条件渲染 -->
+      <p v-if="showMessage1">这是一个条件渲染的消息1</p>
+      <p v-else-if="showMessage2">这是一个条件渲染的消息2</p>
+      <p v-else>消息被隐藏了</p>
+      <!-- v-on监视DOM事件，执行相关的回调函数 -->
+      <button v-on:click="handleClick"></button>
+      <!-- 使用语法糖 -->
+      <button @click="handleClick"></button>
+      <!-- v-show根据条件控制元素显示与隐藏 -->
+      <p v-show="isVisible1">这是一个显示/隐藏的消息1</p>
+      <p v-show="isVisible2">这是一个显示/隐藏的消息2</p>
+    </div>
+    <script>
+      var app1 = new Vue({
+        el: "#p",
+        data: {
+          name: "Alice",
+        },
+      });
+
+      var app2 = new Vue({
+        el: "#div",
+        data: {
+          imageSrc: "https://example.com/image.jpg",
+          message1: "This is message1",
+          message2: "This is message2",
+          items: [
+            { id: 1, text: "苹果" },
+            { id: 2, text: "香蕉" },
+            { id: 3, text: "橙子" },
+          ],
+          showMessage1: false,
+          showMessage2: true,
+          isVisible1: true,
+          isVisible2: false,
+        },
+        methods: {
+          handleClick: function () {
+            alert("按钮被点击了！");
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
