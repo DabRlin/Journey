@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue组件示例</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+  </head>
+  <body>
+    <div id="app">
+        <greeting-component></greeting-component>
+    </div>
+    <script>
+      Vue.component("greeting-component", {
+        template: "<p>Hello,{{name}}!</p>",
+        //组件中的data必须以函数的形式存在
+        data: function () {
+          return {
+            name: "Alice",
+          };
+        },
+      });
+      new Vue({
+        el:"#app"
+      })
+    </script>
+  </body>
+</html>

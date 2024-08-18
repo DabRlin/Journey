@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>待办事项列表</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+  </head>
+  <body>
+    <div id="app">
+      <h1>待办事项列表</h1>
+      <!-- 和vue的newitem进行双向绑定 后续进行检查是否为空 -->
+      <input
+        v-model="newItem"
+        @keyup.enter="addItem"
+        placeholder="添加新事项"
+      />
+      <ul>
+        <li v-for="(item,index) in items" :key="index">
+          <!-- 勾选栏目和布尔值进行双向绑定 -->
+          <input type="checkbox" v-model="item.completed" />
+          {{item.text}}
+          <!-- 删除键调用删除函数 -->
+          <button @click="removeItem(index)">删除</button>
+        </li>
+      </ul>
+    </div>
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data: {
+          newItem: "",
+          items: [
+            { text: "学习vue.js", completed: false },
+            { text: "完成项目", completed: false },
+          ],
+        },
+        methods: {
+          addItem: function () {
+            //trim内置函数除去首尾字符串
+            if (this.newItem.trim() === "") return;
+            //将新元素添加到数组中
+            this.items.push({ text: this.newItem, completed: false });
+            this.newItem = "";
+          },
+          removeItem: function (index) {
+            //删除从index开始的第一个元素
+            this.items.splice(index, 1);
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
