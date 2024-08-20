@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <style>
+        .completed {
+          text-decoration: line-through;
+        }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <input v-model="newTodo" @keyup.enter="addTodo" placeholder="Add a new Task">
+      <ul>
+        <li v-for="(todo, index) in todos" :key="index">
+          <span :class="{ completed: todo.completed }" @click="toggleComplete(index)">
+            {{ todo.text }}
+          </span>
+          <button @click="removeTodo(index)">Delete</button>
+        </li>
+      </ul>
+    </div>
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data() {
+          return {
+            newTodo: "",
+            todos: [],
+          };
+        },
+        methods: {
+          addTodo() {
+            if (this.newTodo.trim()) {
+              this.todos.push({ text: this.newTodo, completed: false });
+              this.newTodo = "";
+            }
+          },
+          removeTodo(index) {
+            this.todos.splice(index, 1);
+          },
+          toggleComplete(index) {
+            this.todos[index].completed = !this.todos[index].completed;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

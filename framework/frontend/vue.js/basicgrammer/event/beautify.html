@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue Beautify test</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+  </head>
+  <body>
+    <div id="app">
+        <!-- 阻止事件被触发 -->
+      <form @submit.prevent="handleSubmit">
+        <input type="text" v-model="inputValue" />
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+    <div @click="handleParentClick">
+        <!-- 阻止事件冒泡，handlebuttonclick会被触发，handleparentclick不会被触发 -->
+        <button @click.stop="handleButtonClick">Click Me</button>
+    </div>
+    <!-- capture改为在捕获阶段出发时间而不是冒泡阶段 -->
+    <div @click.capture="handlecaptureclick">
+        <button @click="handlebuttonclick">click me</button>
+    </div>
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data() {
+          return {
+            inputValue: "",
+          };
+        },
+        methods: {
+          handleSubmit() {
+            alert("Form submit with value:" + this.inputValue);
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

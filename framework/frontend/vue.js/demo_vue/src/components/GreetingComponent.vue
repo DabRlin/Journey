@@ -14,6 +14,6 @@ export default {
 
 <style scoped>
 p{
-    color: ;
+    color:aquamarine ;
 }
 </style>

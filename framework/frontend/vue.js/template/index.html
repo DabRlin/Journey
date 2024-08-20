@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+  </head>
+  <body>
+    <div id="app">
+        <!-- 使用跟组件 -->
+        <todo-item1 v-for="item in todos" :key="item.id":todo="item"></todo-item1>
+        <todo-item2 v-for="item in todos" :key="item.id":todo="item"></todo-item2>
+        <todo-item3 v-for="item in todos" :key="item.id" : ></todo-item3>
+    </div>
+    <script>
+        //全局组件注册
+        Vue.component("todo-item1",{
+            props:["todo"],
+            template:"<li>{{ todo.text }}</li>"
+        })
+        Vue.component("todo-item3",{
+            props:["todo"],
+            template:"<li @click='removeItem'>{{ todo.text }}</li>",
+            methods:{
+                removeItem(){
+                    this.$emit("remove",this.todo.id)
+                }
+            }
+        })
+        new Vue({
+            el:"app",
+            //局部组件注册
+            components:{
+                "todo-item2":{
+                    props:["todo"],
+                    template:"<li>{{todo.text}}</li>"
+                }
+            }
+        })
+    </script>
+  </body>
+</html>
