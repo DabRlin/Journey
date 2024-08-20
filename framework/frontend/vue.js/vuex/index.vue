@@ -16,6 +16,7 @@ export default {
   },
   methods: {
     addTodo() {
+      //调用mutations中的方法
       this.$store.commit("ADD_TODO", {
         text: this.newTodoText,
         compeleted: false,
@@ -25,9 +26,8 @@ export default {
     async fetchTodos() {
       const response = await fetch("api/todos");
       const todos = await response.json();
-      todos.forEach((todo) =>
-        this.$store.dispatch("addTodo", todo);
-      );
+      //异步调用actions中的方法
+      todos.forEach((todo) => this.$store.dispatch("addTodo", todo));
     },
   },
 };

@@ -25,28 +25,31 @@ export default {
       newTodo: "",
     };
   },
-  //使用store的getter部分的filteredTodos来获取筛选的的列表
+  computed: {
+    // 使用 store 的 getter 部分的 filteredTodos 来获取筛选的列表
     filteredTodos() {
       return this.$store.getters.filteredTodos;
     },
   },
   methods: {
-    //添加Todo
+    // 添加 Todo
     addTodo() {
       if (this.newTodo.trim()) {
-        this.$store.dispatch("addTodo", { text: this.newTodo, compeleted: false });
-        this.newTodo=""
+        this.$store.dispatch("addTodo", {
+          text: this.newTodo,
+          completed: false,
+        });
+        this.newTodo = "";
       }
     },
-    //移除Todo
-    removeTodo(index)({
-        this.$store.dispatch("removeTodo",index)
-    })
-    //筛选Todo
-    setFilter(filter){
-        this.$store.dispatch("setFilter",filter)
-    }
+    // 移除 Todo
+    removeTodo(index) {
+      this.$store.dispatch("removeTodo", index);
+    },
+    // 筛选 Todo
+    setFilter(filter) {
+      this.$store.dispatch("setFilter", filter);
+    },
   },
-
 };
 </script>
