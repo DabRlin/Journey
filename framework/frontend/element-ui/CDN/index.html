@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue with Element UI Example</title>
+    <!-- 引入 Element UI 样式  rel描述当前文档与被引入资源之间的关系-->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/element-ui/lib/theme-chalk/index.css"
+    />
+  </head>
+  <body>
+    <!-- Vue 挂载的根元素 -->
+    <div id="app">
+      <!-- 使用 Element UI 的输入框组件 -->
+      <el-input
+        v-model="inputValue"
+        placeholder="Enter something..."
+      ></el-input>
+
+      <!-- 使用 Element UI 的按钮组件 -->
+      <el-button type="primary" @click="handleClick">Click Me</el-button>
+
+      <!-- 显示输入的值 -->
+      <p>You entered: {{ inputValue }}</p>
+    </div>
+
+    <!-- 引入 Vue.js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <!-- 引入 Element UI -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+
+    <script>
+      // 创建 Vue 实例
+      new Vue({
+        el: "#app", // 绑定到 id 为 'app' 的 DOM 元素
+        data: function () {
+          return {
+            inputValue: "", // 定义数据属性，绑定到输入框
+          };
+        },
+        methods: {
+          handleClick() {
+            //element-ui提供的一个全局方法 用于在界面上显示消息
+            this.$message({
+              message: "You entered: " + this.inputValue,//指定message是消息内容
+              type: "success",//指定消息的类型为success
+            });
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
