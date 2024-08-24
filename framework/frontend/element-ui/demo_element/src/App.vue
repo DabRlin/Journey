@@ -1,19 +1,36 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <element-button></element-button>
+    <element-u-i></element-u-i>
+    <element-input></element-input>
+    <element-dialog></element-dialog>
+    <element-form></element-form>
+    <element-table></element-table>
+    <element-try></element-try>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import ElementButton from "./components/ElementButton.vue";
+import ElementUI from "./components/ElementUI.vue";
+import ElementInput from "./components/ElementInput.vue";
+import ElementDialog from "./components/ElementDialog.vue";
+import ElementForm from "./components/ElementForm.vue";
+import ElementTable from "./components/ElementTable.vue";
+import ElementTry from "./components/ElementTry.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    ElementUI,
+    ElementButton,
+    ElementInput,
+    ElementDialog,
+    ElementForm,
+    ElementTable,
+    ElementTry,
+  },
+};
 </script>
 
 <style>
