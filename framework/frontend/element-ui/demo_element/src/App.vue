@@ -11,13 +11,13 @@
 </template>
 
 <script>
-import ElementButton from "./components/ElementButton.vue";
-import ElementUI from "./components/ElementUI.vue";
-import ElementInput from "./components/ElementInput.vue";
-import ElementDialog from "./components/ElementDialog.vue";
-import ElementForm from "./components/ElementForm.vue";
-import ElementTable from "./components/ElementTable.vue";
-import ElementTry from "./components/ElementTry.vue";
+import ElementButton from "./components/Element/ElementButton.vue";
+import ElementUI from "./components/Element/ElementUI.vue";
+import ElementInput from "./components/Element/ElementInput.vue";
+import ElementDialog from "./components/Element/ElementDialog.vue";
+import ElementForm from "./components/Element/ElementForm.vue";
+import ElementTable from "./components/Element/ElementTable.vue";
+import ElementTry from "./components/Element/ElementTry.vue";
 
 export default {
   name: "App",
