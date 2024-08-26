@@ -11,7 +11,7 @@
       <p>This is a dialog</p>
 
       <!-- 对话框的底部区域 -->
-      <!-- slot是vue.js的功能 用于在组件中插入自定义的内容 此处插入对话框底部 -->
+      <!-- slot是vue.js的功能 插槽 用于在组件中插入自定义的内容 此处插入对话框底部 -->
       <span slot="footer" class="dialog-footer">
         <!-- 取消按钮 -->
         <el-button @click="dialogVisible = false">Cancel</el-button>
